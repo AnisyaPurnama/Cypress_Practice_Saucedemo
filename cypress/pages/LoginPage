@@ -1,0 +1,23 @@
+class LoginPage {
+    usernameStandard = '[data-test="username"]';
+    password = '[data-test="password"]';
+    loginButton = ".submit-button";
+
+    visit() {
+        cy.visit('https://saucedemo.com');
+    }
+
+    enterStandardUsername(usernameStandard) {
+        cy.get(this.usernameStandard).type(usernameStandard);
+    }
+
+    enterPassword(password) {
+        cy.get(this.password).type(password);
+    }
+
+    clickLogin(loginButton) {
+        cy.get(this.loginButton).click();
+    }
+}
+
+export default new LoginPage();

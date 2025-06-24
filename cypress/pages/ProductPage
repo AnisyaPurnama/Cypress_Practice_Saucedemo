@@ -1,0 +1,9 @@
+class ProductPage {
+    backpackAddToCartBtn = '#add-to-cart-sauce-labs-backpack';
+
+    clickAddToCartBackpack() {
+        cy.get(this.backpackAddToCartBtn).click();
+    }
+}
+
+export default new ProductPage();
