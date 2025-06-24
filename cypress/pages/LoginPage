@@ -18,6 +18,10 @@ class LoginPage {
     clickLogin(loginButton) {
         cy.get(this.loginButton).click();
     }
+
+    validateLoginPage() {
+        cy.get(this.loginButton).should('be.visible');
+    }
 }
 
 export default new LoginPage();
