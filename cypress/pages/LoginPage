@@ -1,14 +1,15 @@
 class LoginPage {
-    usernameStandard = '[data-test="username"]';
+    username = '[data-test="username"]';
     password = '[data-test="password"]';
     loginButton = ".submit-button";
+    errorMessage = '[data-test="error"]';
 
     visit() {
-        cy.visit('https://saucedemo.com');
+        cy.visit('https://www.saucedemo.com/');
     }
 
-    enterStandardUsername(usernameStandard) {
-        cy.get(this.usernameStandard).type(usernameStandard);
+    enterUsername(username) {
+        cy.get(this.username).type(username);
     }
 
     enterPassword(password) {
@@ -21,6 +22,14 @@ class LoginPage {
 
     validateLoginPage() {
         cy.get(this.loginButton).should('be.visible');
+    }
+
+    validateProductPage() {
+        cy.url().should('include', '/inventory');
+    }
+
+    validateErrorLoginMessage() {
+        cy.get(this.errorMessage).should('be.visible');;
     }
 }
 
