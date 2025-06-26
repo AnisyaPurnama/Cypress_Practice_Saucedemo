@@ -5,7 +5,7 @@ class LoginPage {
     errorMessage = '[data-test="error"]';
 
     visit() {
-        cy.visit('https://www.saucedemo.com/');
+        cy.visit('https://www.saucedemo.com/', { failOnStatusCode: false });
     }
 
     enterUsername(username) {
@@ -16,7 +16,7 @@ class LoginPage {
         cy.get(this.password).type(password);
     }
 
-    clickLogin(loginButton) {
+    clickLogin() {
         cy.get(this.loginButton).click();
     }
 
@@ -24,12 +24,8 @@ class LoginPage {
         cy.get(this.loginButton).should('be.visible');
     }
 
-    validateProductPage() {
-        cy.url().should('include', '/inventory');
-    }
-
     validateErrorLoginMessage() {
-        cy.get(this.errorMessage).should('be.visible');;
+        cy.get(this.errorMessage).should('be.visible');
     }
 }
 

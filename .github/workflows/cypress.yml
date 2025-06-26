@@ -11,6 +11,9 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container: [1, 2, 3] # 3 parallel jobs
 
     steps:
       - name: Checkout code
