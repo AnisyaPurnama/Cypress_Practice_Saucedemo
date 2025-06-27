@@ -4,7 +4,7 @@ import MenuPage from "../pages/MenuPage";
 describe('Log out', () => {
     beforeEach(() => {
         LoginPage.visit();
-        LoginPage.enterStandardUsername("standard_user");
+        LoginPage.enterUsername("standard_user");
         LoginPage.enterPassword("secret_sauce");
         LoginPage.clickLogin();
     });
