@@ -43,3 +43,10 @@ jobs:
         with:
           name: cypress-videos-${{ matrix.container }}
           path: cypress/videos
+
+      - name: Upload Mochawesome HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report-${{ matrix.container }}
+          path: cypress/reports/html
