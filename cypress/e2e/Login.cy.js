@@ -1,6 +1,7 @@
 import LoginPage from "../pages/LoginPage";
 import MenuPage from "../pages/MenuPage";
 import ProductPage from "../pages/ProductPage";
+import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 
 const users = {
     standard: "standard_user",

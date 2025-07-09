@@ -1,15 +1,18 @@
 import LoginPage from "../pages/LoginPage";
 import MenuPage from "../pages/MenuPage";
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-describe('Log out', () => {
-    beforeEach(() => {
+Given('I am logged in as {string} with password {string}', (username, password) => {
         LoginPage.visit();
-        LoginPage.enterUsername("standard_user");
-        LoginPage.enterPassword("secret_sauce");
+        LoginPage.enterUsername(username);
+        LoginPage.enterPassword(password);
         LoginPage.clickLogin();
     });
     
-    it('should log out successfully', () => {
-        MenuPage.loggingOut();
-    });
+When('I log out from the menu', () => {
+  MenuPage.loggingOut();
+});
+
+Then('I should be redirected to the login page', () => {
+  cy.url().should('include', 'saucedemo.com');
 });
