@@ -16,6 +16,9 @@ module.exports = defineConfig({
     },
 
   e2e: {
+    cucumber: {
+      stepDefinitions: ["**/*.steps.{js,ts}"]
+    },
     specPattern: ["**/*.feature", "cypress/e2e/**/*.{cy,spec}.{js,ts}"],
     baseUrl: "https://www.saucedemo.com",
     supportFile: "cypress/support/e2e.js",
@@ -27,6 +30,7 @@ module.exports = defineConfig({
     watchForFileChanges: false,
     chromeWebSecurity: false,
     blockHosts: ["https://events.backtrace.io"],
+    
 
     async setupNodeEvents(on, config) {
       // Cucumber
