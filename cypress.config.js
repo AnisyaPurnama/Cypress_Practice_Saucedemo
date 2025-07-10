@@ -16,15 +16,13 @@ module.exports = defineConfig({
     },
 
   e2e: {
-    cucumber: {
-      stepDefinitions: ["**/*.steps.{js,ts}"]
-    },
-    specPattern: ["**/*.feature", "cypress/e2e/**/*.{cy,spec}.{js,ts}"],
+    //specPattern: ["**/*.feature", "cypress/e2e/**/*.{cy,spec}.{js,ts}"],
+    specPattern: "cypress/e2e/**/*.feature",
     baseUrl: "https://www.saucedemo.com",
     supportFile: "cypress/support/e2e.js",
     screenshotOnRunFailure: true,
-    video: true,                 // explicitly enable video recording
-    defaultCommandTimeout: 5000, // optional increased timeout
+    video: true,                 
+    defaultCommandTimeout: 5000,
     trashAssetsBeforeRuns: true, // clean old videos/screenshots before tests
     testIsolation: false,
     watchForFileChanges: false,

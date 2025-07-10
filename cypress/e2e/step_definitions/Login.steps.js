@@ -1,79 +1,59 @@
-import LoginPage from "../pages/LoginPage";
-import MenuPage from "../pages/MenuPage";
-import ProductPage from "../pages/ProductPage";
-import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import LoginPage from "../../pages/LoginPage";
+import ProductPage from "../../pages/ProductPage";
+import MenuPage from "../../pages/MenuPage";
+
+const password = "secret_sauce";
 
 const users = {
-    standard: "standard_user",
-    locked: "locked_out_user",
-    problem: "problem_user",
-    glitch: "performance_glitch_user",
-    error: "error_user",
-    visual: "visual_user",
-    invalid: "invalid_user"
-  };
+  standard: "standard_user",
+  locked: "locked_out_user",
+  problem: "problem_user",
+  glitch: "performance_glitch_user",
+  error: "error_user",
+  visual: "visual_user",
+  invalid: "invalid_user"
+};
 
-  const password = "secret_sauce";
+// ---------- GIVEN ----------
+Given("the user is on the login page", () => {
+  cy.clearCookies();
+  LoginPage.visit();
+});
 
-describe('Login Test', () => {
+// ---------- WHEN ----------
+When(
+  "the user logs in with username {string} and password {string}",
+  (username, pwd) => {
+    LoginPage.enterUsername(username);
+    LoginPage.enterPassword(pwd);
+    LoginPage.clickLogin();
+  }
+);
 
-    beforeEach(() => {
-        cy.clearCookies();
-        LoginPage.visit();
-      });
+When("the user enters password {string} only and clicks login", (pwd) => {
+  LoginPage.enterPassword(pwd);
+  LoginPage.clickLogin();
+});
 
-    it('should log in successfully with valid credentials', () => {
-        LoginPage.enterUsername(users.standard);
-        LoginPage.enterPassword(password);
-        LoginPage.clickLogin();
-        ProductPage.validateProductPage();
-        MenuPage.loggingOut();
-    });
+When("the user enters username {string} only and clicks login", (username) => {
+  LoginPage.enterUsername(username);
+  LoginPage.clickLogin();
+});
 
-    it('should show error validation for invalid user', () => {
-        LoginPage.enterUsername(users.locked);
-        LoginPage.enterPassword(password);
-        LoginPage.clickLogin();
-        LoginPage.validateErrorLoginMessage();
-      });
+When("the user clicks login without entering credentials", () => {
+  LoginPage.clickLogin();
+});
 
-      it("should log in with problem user", () => {
-        LoginPage.enterUsername(users.problem);
-        LoginPage.enterPassword(password);
-        LoginPage.clickLogin();
-        ProductPage.validateProductPage();
-        MenuPage.loggingOut();
-      });
+// ---------- THEN ----------
+Then("the user should be redirected to the products page", () => {
+  ProductPage.validateProductPage();
+});
 
-      it("should log in with performance glitch user", () => {
-        LoginPage.enterUsername(users.glitch);
-        LoginPage.enterPassword(password);
-        LoginPage.clickLogin();
-        cy.url({ timeout: 10000 }).should("include", "/inventory.html");
-        MenuPage.loggingOut();
-      });
+Then("an error message should be displayed", () => {
+  LoginPage.validateErrorLoginMessage();
+});
 
-      it("should show error for invalid password", () => {
-        LoginPage.enterUsername(users.standard);
-        LoginPage.enterPassword("wrong_password");
-        LoginPage.clickLogin();
-        LoginPage.validateErrorLoginMessage();
-      });
-    
-      it("should show error for empty username", () => {
-        LoginPage.enterPassword(password);
-        LoginPage.clickLogin();
-        LoginPage.validateErrorLoginMessage();
-      });
-    
-      it("should show error for empty password", () => {
-        LoginPage.enterUsername(users.standard);
-        LoginPage.clickLogin();
-        LoginPage.validateErrorLoginMessage();
-      });
-    
-      it("should show error for empty username and password", () => {
-        LoginPage.clickLogin();
-        LoginPage.validateErrorLoginMessage();
-      });
+Then("the user logs out successfully", () => {
+  MenuPage.loggingOut();
 });

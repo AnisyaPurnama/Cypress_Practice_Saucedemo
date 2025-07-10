@@ -1,28 +1,41 @@
-import CheckoutPage from "../pages/CheckoutPage";
-import LoginPage from "../pages/LoginPage";
-import ProductPage from "../pages/ProductPage";
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import LoginPage from "../../pages/LoginPage";
+import ProductPage from "../../pages/ProductPage";
+import CheckoutPage from "../../pages/CheckoutPage";
 
-/// <reference types="cypress" />
+// ---------- GIVEN ----------
+Given("the user is logged in as {string}", (username) => {
+  cy.clearCookies();
+  LoginPage.visit();
+  LoginPage.enterUsername(username);
+  LoginPage.enterPassword("secret_sauce");
+  LoginPage.clickLogin();
+  ProductPage.validateProductPage();
+});
 
-describe('Checkout', () => {
-    beforeEach(() => {
-        LoginPage.visit();
-        LoginPage.enterUsername("standard_user");
-        LoginPage.enterPassword("secret_sauce");
-        LoginPage.clickLogin();
-        ProductPage.clickAddToCartBackpack();
-    });
+// ---------- WHEN ----------
+When("the user adds a backpack to the cart", () => {
+  ProductPage.clickAddToCartBackpack();
+});
 
-    it('should navigate to success order page', () => {
-        cy.wait(2000);
-        CheckoutPage.navigateToShoppingCart();
-        CheckoutPage.navigateToCheckoutPage();
-        CheckoutPage.enterFirstName("Rurouni");
-        CheckoutPage.enterLastName("Kenshin");
-        CheckoutPage.enterPostcode("9000");
-        CheckoutPage.navigateToCheckoutOverview();
-        CheckoutPage.finishTheCheckout();
-        CheckoutPage.validateSuccessConfirmation();
-    })
-})
+When("the user proceeds to checkout", () => {
+  CheckoutPage.navigateToShoppingCart();
+  CheckoutPage.navigateToCheckoutPage();
+});
 
+When("the user enters checkout information:", (dataTable) => {
+  const data = dataTable.rowsHash();
+  CheckoutPage.enterFirstName(data.firstName);
+  CheckoutPage.enterLastName(data.lastName);
+  CheckoutPage.enterPostcode(data.postcode);
+  CheckoutPage.navigateToCheckoutOverview();
+});
+
+When("the user completes the checkout", () => {
+  CheckoutPage.finishTheCheckout();
+});
+
+// ---------- THEN ----------
+Then("the order should be confirmed successfully", () => {
+  CheckoutPage.validateSuccessConfirmation();
+});

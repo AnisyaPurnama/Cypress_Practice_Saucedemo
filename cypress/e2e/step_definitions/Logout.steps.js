@@ -1,8 +1,9 @@
-import LoginPage from "../pages/LoginPage";
-import MenuPage from "../pages/MenuPage";
+import LoginPage from "../../pages/LoginPage";
+import MenuPage from "../../pages/MenuPage";
 
 const { Given, When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 
+console.log("Step definitions loaded 🚀");
 Given('I am logged in as {string} with password {string}', (username, password) => {
         LoginPage.visit();
         LoginPage.enterUsername(username);
