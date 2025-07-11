@@ -12,8 +12,13 @@ module.exports = defineConfig({
         charts: true,
         reportPageTitle: 'Cypress Test Report',
         embeddedScreenshots: true,
+        screenshotsFolder: 'cypress/screenshots',
+        videosFolder: 'cypress/videos',
         inlineAssets: true,
         saveAllAttempts: false,
+        overwrite: false, // important to generate multiple reports
+        html: false, // disable single HTML reports (optional, but recommended)
+        json: true, // **enable JSON report generation**
     },
 
     e2e: {

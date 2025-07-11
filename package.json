@@ -6,9 +6,9 @@
     "scripts": {
         "clean:reports": "rm -rf cypress/reports/html && mkdir -p cypress/reports/html",
         "cypress:run": "npx cypress run",
-        "report:merge": "npx mochawesome-merge \"cypress/reports/html/*.json\" -o cypress/reports/html/merged.json",
+        "report:merge": "npx mochawesome-merge 'cypress/reports/html/.jsons/*.json' -o cypress/reports/html/merged.json",
         "report:generate": "npx marge cypress/reports/html/merged.json -f report -o cypress/reports/html",
-        "test": "npm run clean:reports && npm run cypress:run && npm run report:merge && npm run report:generate"
+        "test": "npm run clean:reports && npm run cypress:run ; npm run report:merge && npm run report:generate"
     },
     "keywords": [],
     "author": "",
