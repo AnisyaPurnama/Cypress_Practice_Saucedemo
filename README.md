@@ -5,6 +5,7 @@ This project contains end-to-end (E2E) tests written using [Cypress](https://www
 ## 🚀 Getting Started
 
 ### 📦 Prerequisites
+
 - [Node.js](https://nodejs.org/) (version 18+ recommended)
 - [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 - [Git](https://git-scm.com/)
@@ -32,3 +33,4 @@ npx cypress run --headed --browser chrome
 # Open Cypress Test Runner (interactive GUI)
 npx cypress open
 
+```
