@@ -1,6 +1,6 @@
-import CheckoutPage from '../pages/CheckoutPage';
-import LoginPage from '../pages/LoginPage';
-import ProductPage from '../pages/ProductPage';
+import CheckoutPage from '../pages/CheckoutPage.js';
+import LoginPage from '../pages/LoginPage.js/index.js';
+import ProductPage from '../pages/ProductPage.js/index.js';
 
 /// <reference types="cypress" />
 

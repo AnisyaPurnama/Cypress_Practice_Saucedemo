@@ -1,5 +1,5 @@
-import LoginPage from '../pages/LoginPage';
-import MenuPage from '../pages/MenuPage';
+import LoginPage from '../pages/LoginPage.js';
+import MenuPage from '../pages/MenuPage.js/index.js';
 
 describe('Log out', () => {
   beforeEach(() => {

@@ -1,5 +1,5 @@
-import ProductPage from '../pages/ProductPage';
-import LoginPage from '../pages/LoginPage';
+import ProductPage from '../pages/ProductPage.js/index.js';
+import LoginPage from '../pages/LoginPage.js';
 
 describe('Add to cart', () => {
   beforeEach(() => {
