@@ -1,37 +1,44 @@
 import js from '@eslint/js';
 import globals from 'globals';
-import { defineConfig } from 'eslint/config';
-import eslintPlaywrightPlugin from 'eslint-plugin-playwright';
+import cypress from 'eslint-plugin-cypress';
 
-export default defineConfig([
+export default [
   {
-    ignores: ['node_modules', 'playwright-report', 'dist'],
-    files: ['**/*.{js,mjs,cjs}'],
-    plugins: { js },
-    extends: ['js/recommended'],
+    ...js.configs.recommended,
+    files: ['**/*.js'],
+    ignores: ['node_modules', 'dist', 'cypress/reports'],
     languageOptions: {
-      globals: { ...globals.browser, ...globals.node },
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
+    plugins: {
+      cypress,
     },
     rules: {
-      semi: ['error', 'always'],
-      quotes: ['error', 'single', {allowTemplateLiterals: true, avoidEscape: true}],
-      'no-unused-vars': ['warn'],
+      'no-console': 'warn',
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     },
   },
   {
-    files: ['tests/**/*.js'],
-    plugins: {
-      playwright: eslintPlaywrightPlugin,
-    },
+    files: ['cypress/**/*.js'],
     languageOptions: {
       globals: {
-        page: 'readonly',
-        expect: 'readonly',
-        test: 'readonly',
+        Cypress: 'readonly',
+        cy: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        before: 'readonly',
+        after: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
       },
     },
+    plugins: {
+      cypress,
+    },
     rules: {
-      ...eslintPlaywrightPlugin.configs.recommended.rules,
+      //'cypress/no-unnecessary-waiting': 'warn',
+      //'cypress/no-assigning-return-values': 'error'
     },
   },
-]);
+];
