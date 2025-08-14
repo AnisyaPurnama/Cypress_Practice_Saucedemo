@@ -1,6 +1,6 @@
 import LoginPage from '../pages/LoginPage.js';
-import MenuPage from '../pages/MenuPage.js/index.js';
-import ProductPage from '../pages/ProductPage.js/index.js';
+import MenuPage from '../pages/MenuPage.js';
+import ProductPage from '../pages/ProductPage.js';
 
 const users = {
   standard: 'standard_user',

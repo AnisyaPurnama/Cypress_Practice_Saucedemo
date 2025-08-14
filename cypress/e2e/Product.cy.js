@@ -1,4 +1,4 @@
-import ProductPage from '../pages/ProductPage.js/index.js';
+import ProductPage from '../pages/ProductPage.js';
 import LoginPage from '../pages/LoginPage.js';
 
 describe('Add to cart', () => {
