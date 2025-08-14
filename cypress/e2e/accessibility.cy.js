@@ -1,4 +1,4 @@
-import LoginPage from '../pages/LoginPage.js/index.js';
+import LoginPage from '../pages/LoginPage.js';
 
 describe('Accessibility checks', () => {
   beforeEach(() => {
@@ -6,7 +6,15 @@ describe('Accessibility checks', () => {
     cy.injectAxe(); // Inject axe-core runtime into the page
   });
 
-  it('Has no detectable a11y violations on load', () => {
-    cy.checkA11y(); // Run accessibility checks
+  it('It should log any accesibility failures', () => {
+    cy.checkA11y();
   });
+
+  it('should exclude specific elements on the page', () => {
+    cy.checkA11y({ exclude: [] });
+  });
+
+  it('should only test specific elements on teh page'), () => {
+    cy.checkA11y('.login-box');
+  }
 });

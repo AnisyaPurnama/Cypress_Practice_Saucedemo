@@ -32,3 +32,6 @@ module.exports = defineConfig({
     blockHosts: ["https://events.backtrace.io"],
   },
 });
+
+
+require('@applitools/eyes-cypress')(module);
