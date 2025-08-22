@@ -9,7 +9,7 @@ describe('Contrast Advisor', () => {
       },
     });
 
-    cy.visit('https://www.google.com/');
+    cy.visit('https://www.saucedemo.com/');
     cy.eyesCheckWindow();
     cy.eyesClose();
   });

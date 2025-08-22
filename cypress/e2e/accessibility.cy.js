@@ -16,10 +16,10 @@ describe('Accessibility checks for login page', () => {
     cy.checkA11y({ exclude: [] });
   });
 
-  it('should only test specific elements on the page'),
-    () => {
-      cy.checkA11y('.login-box');
-    };
+  // it('should only test specific elements on the page'),
+  //   () => {
+  //     cy.checkA11y('.login-box');
+  //   };
 });
 
 describe('Accessibility checks for product page', () => {
